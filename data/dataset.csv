@@ -1,0 +1,33 @@
+chest_pain,breath,fatigue,heartbeat,dizziness,heart_disease
+0,0,0,0,0,Healthy
+0,0,0,0,1,Mild Heart Issue
+0,0,0,1,0,Arrhythmia
+0,0,0,1,1,Heart Failure
+0,0,1,0,0,Mild Heart Issue
+0,0,1,0,1,Heart Failure
+0,0,1,1,0,Arrhythmia
+0,0,1,1,1,Heart Failure
+0,1,0,0,0,Asthma
+0,1,0,0,1,Heart Failure
+0,1,0,1,0,Arrhythmia
+0,1,0,1,1,Severe Heart Disease
+0,1,1,0,0,Heart Failure
+0,1,1,0,1,Heart Failure
+0,1,1,1,0,Arrhythmia
+0,1,1,1,1,Severe Heart Disease
+1,0,0,0,0,Angina
+1,0,0,0,1,Heart Failure
+1,0,0,1,0,Coronary Artery Disease
+1,0,0,1,1,Severe Heart Disease
+1,0,1,0,0,Heart Failure
+1,0,1,0,1,Heart Failure
+1,0,1,1,0,Coronary Artery Disease
+1,0,1,1,1,Severe Heart Disease
+1,1,0,0,0,Coronary Artery Disease
+1,1,0,0,1,Severe Heart Disease
+1,1,0,1,0,Coronary Artery Disease
+1,1,0,1,1,Severe Heart Disease
+1,1,1,0,0,Heart Failure
+1,1,1,0,1,Severe Heart Disease
+1,1,1,1,0,Coronary Artery Disease
+1,1,1,1,1,Severe Heart Disease
