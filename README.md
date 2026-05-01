@@ -11,11 +11,11 @@ This project aims to assist in **early detection and awareness**, helping users 
 
 
 ## login
-![image alt]https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/main/Screenshot%20(53).png?raw=true
+![image alt]https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/main/Screenshot%20(53).png)
 ## interface
-![image alt]https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/main/Screenshot%20(54).png?raw=true
+![image alt]https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/main/Screenshot%20(54).png)
 ## Result
-![image alt]https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/main/Screenshot%20(55).png?raw=true
+![image alt]https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/main/Screenshot%20(55).png)
 
 ## 🚀 Features
 
