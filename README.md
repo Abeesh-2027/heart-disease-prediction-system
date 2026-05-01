@@ -11,9 +11,11 @@ This project aims to assist in **early detection and awareness**, helping users 
 
 
 ## login
-
+![image alt]
 ## interface
+![image alt]
 ## Result
+![image alt]
 
 ## 🚀 Features
 
