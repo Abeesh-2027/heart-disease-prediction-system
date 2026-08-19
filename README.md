@@ -1,165 +1,125 @@
-# ❤️ Smart Heart Disease Prediction System (Streamlit)
+# Cardia — Heart Disease Screening (Full-Stack Rebuild)
 
-## 📌 Project Overview
+Your original project was a single Streamlit script with a hardcoded login
+(`admin` / `1234`). It's been rebuilt as a proper **frontend + backend** app so
+it can be deployed the way you asked — backend on **Render**, frontend on
+**Vercel**, connected together as a live portfolio project.
 
-The **Heart Disease Prediction System** is a Machine Learning-based web application built using **Streamlit**.
-It predicts the likelihood of heart disease based on user-provided medical parameters.
+```
+build/
+├── backend/          FastAPI API (deploy this to Render)
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── render.yaml
+│   └── model/
+│       ├── heart_model.pkl
+│       └── label_encoder.pkl
+└── frontend/          Static site (deploy this to Vercel)
+    ├── index.html
+    ├── style.css
+    ├── script.js
+    ├── config.js       ← you edit ONE line here after backend is live
+    └── vercel.json
+```
 
-This project aims to assist in **early detection and awareness**, helping users take preventive action.
+**What changed from the original:**
+- **Login** now accepts *any* non-empty username + password (no more hardcoded `admin`/`1234`) — checked by the backend, not the frontend, so it can't be bypassed by viewing page source.
+- **Fully responsive UI** — tested down to a 360px-wide phone screen (breakpoints in `style.css`).
+- **Split into two deployable pieces**: a FastAPI JSON API (backend) and a static HTML/CSS/JS site (frontend) that calls it — this is what lets you host one on Render and one on Vercel.
 
-## Screenshot
-
-
-## login
-![image alt]()
-## interface
-![image alt]()
-## Result
-![image alt]()
-
-## 🚀 Features
-
-* 🔍 Heart disease prediction using a trained ML model
-* 🖥️ Interactive and user-friendly web interface
-* ⚡ Instant prediction results
-* 📊 Simple input form for medical parameters
-* 🧠 Model retraining capability
+I can't push to Render/Vercel on your behalf (that needs your own accounts), but everything below is copy-paste — about 10 minutes total.
 
 ---
 
-## 🛠️ Technologies Used
+## Step 1 — Push this code to GitHub
 
-* **Python**
-* **Streamlit**
-* **Scikit-learn**
-* **Pandas & NumPy**
-* **Pickle (Model Saving)**
+1. Create a new GitHub repo (e.g. `cardia-heart-screening`).
+2. Copy the entire `build/` folder contents into it (both `backend/` and `frontend/` at the repo root, or as subfolders — either works, just note the path when configuring Render/Vercel below).
+3. Commit and push.
+
+## Step 2 — Deploy the backend to Render
+
+1. Go to [render.com](https://render.com) → **New** → **Web Service** → connect your GitHub repo.
+2. If `backend/` is a subfolder, set **Root Directory** to `backend`.
+3. Settings:
+   - **Environment**: Python 3
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - **Instance Type**: Free
+4. Click **Create Web Service**. Render will give you a live URL like:
+   `https://cardia-api.onrender.com`
+5. Visit that URL — you should see `{"status":"ok",...}`.
+
+   *(A `render.yaml` is included if you prefer Render's "Blueprint" one-click setup instead of manual settings.)*
+
+   Note: on Render's free tier the service sleeps after inactivity, so the first request after idling can take ~30–50 seconds to wake up. That's normal.
+
+## Step 3 — Point the frontend at your backend
+
+Open `frontend/config.js` and change the one line:
+
+```js
+const API_BASE_URL = "https://cardia-api.onrender.com"; // your Render URL, no trailing slash
+```
+
+Commit and push that change.
+
+## Step 4 — Deploy the frontend to Vercel
+
+1. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → import the same GitHub repo.
+2. If `frontend/` is a subfolder, set **Root Directory** to `frontend`.
+3. **Framework Preset**: "Other" (it's plain static HTML/CSS/JS — no build step needed).
+4. Click **Deploy**. You'll get a live URL like:
+   `https://cardia-heart-screening.vercel.app`
+
+## Step 5 — Connect them (CORS)
+
+By default the backend's `render.yaml` sets `ALLOWED_ORIGINS=*`, so it already accepts requests from your Vercel domain — no extra step needed.
+
+To lock it down later (recommended once it's live): in Render, go to your service → **Environment** → set:
+```
+ALLOWED_ORIGINS = https://cardia-heart-screening.vercel.app
+```
+and redeploy.
+
+## Step 6 — Test the live link
+
+Open your Vercel URL on your phone and on desktop:
+- Log in with literally any username/password.
+- Toggle a few symptoms, click **Run Screening** — you should see a live prediction come back from the Render API.
+
+That Vercel URL is your shareable, live portfolio link.
 
 ---
 
-## 📂 Project Structure
+## Running it locally first (optional, recommended)
 
-```
-heart_disease_project/
-│
-├── analysis/
-│   └── visualization.py
-│
-├── app/
-│   └── app.py
-│
-├── data/
-│   └── dataset.csv
-│
-├── model/
-│   ├── heart_model.pkl
-│   ├── label_encoder.pkl
-│   └── train_model.py
-│
-├── venv/
-├── requirements.txt
-└── README.md
-```
-
----
-
-## ⚙️ Installation Guide
-
-### 1️⃣ Clone the Repository
-
+**Backend:**
 ```bash
-git clone https://github.com/yourusername/heart-disease-prediction.git
-```
-
-### 2️⃣ Navigate to Project Folder
-
-```bash
-cd heart-disease-prediction
-```
-
-### 3️⃣ Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### 4️⃣ Activate Environment
-
-**Windows**
-
-```bash
-venv\Scripts\activate
-```
-
-**Linux / Mac**
-
-```bash
-source venv/bin/activate
-```
-
-### 5️⃣ Install Dependencies
-
-```bash
+cd backend
 pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
 ```
 
----
-
-## ▶️ Run the Application
-
+**Frontend** (in a second terminal):
 ```bash
-streamlit run app/app.py
+cd frontend
+python3 -m http.server 5500
 ```
+Open `http://localhost:5500` — `config.js` already points at `http://127.0.0.1:8000` by default, so login/prediction will work against your local backend immediately.
 
 ---
 
-## 📊 Input Parameters
+## API reference
 
-| Parameter  | Description         | Values          |
-| ---------- | ------------------- | --------------- |
-| chest_pain | Chest pain presence | 0 = No, 1 = Yes |
-| breath     | Shortness of breath | 0 = No, 1 = Yes |
-| fatigue    | Feeling tired       | 0 = No, 1 = Yes |
-| heartbeat  | Irregular heartbeat | 0 = No, 1 = Yes |
-| dizziness  | Dizziness           | 0 = No, 1 = Yes |
+| Method | Path            | Body                                                              | Response                          |
+|--------|-----------------|--------------------------------------------------------------------|------------------------------------|
+| GET    | `/`             | —                                                                   | `{status, service}`               |
+| POST   | `/api/login`    | `{"username": "...", "password": "..."}`                          | `{"success": true, "username": "..."}` |
+| POST   | `/api/predict`  | `{"chest_pain":0/1,"breath":0/1,"fatigue":0/1,"heartbeat":0/1,"dizziness":0/1}` | `{"prediction": "Healthy" \| "Arrhythmia" \| ...}` |
 
----
+## Notes
 
-## 🧠 Model Training
-
-To retrain the machine learning model:
-
-```bash
-python model/train_model.py
-```
-
----
-
-## 📈 Future Improvements
-
-* 🌐 Deploy on Streamlit Cloud
-* 📊 Add more datasets for better accuracy
-* 🤖 Improve ML model performance
-* 🔐 Add user authentication system
-* 📄 Generate downloadable health reports
-* 🚨 Add alert system for high-risk predictions
-
----
-
-## 👨‍💻 Author
-
-**Abeesh**
-
----
-
-## 📜 License
-
-This project is open-source and available for use and modification.
-
----
-
-## ⭐ Support
-
-If you like this project, consider giving it a ⭐ on GitHub!
-
----
+- The trained model (`heart_model.pkl`) and label encoder are unchanged from your original project — same RandomForest model, same 5 binary symptom inputs.
+- The original `model/train_model.py`, `data/dataset.csv`, and `analysis/visualization.py` weren't part of the live app, so they weren't ported into `backend/`/`frontend/` — copy them into the repo too if you want them alongside the deployable code for reference.
+- This demo login is intentionally open (any credentials work) as you requested. If you ever want *real* authentication (hashed passwords, a user database, JWT sessions), that's a separate, larger change — just ask.
