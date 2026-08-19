@@ -14,7 +14,7 @@ based on user symptoms.
 
 ## InterFace
 
-![image alt]()
+![image alt](https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/4f0794341cdb806bf8c8adab31426ba96103489e/Screenshot%202026-08-19%20161248.png)
 
 ## Output
 
