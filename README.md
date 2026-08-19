@@ -18,7 +18,7 @@ based on user symptoms.
 
 ## Output
 
-![image alt]()
+![image alt](https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/853a28ba515eb93ac6863bfd53060ddb768d9c18/Screenshot%202026-08-19%20161323.png)
 
 ---
 
