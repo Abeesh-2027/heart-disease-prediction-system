@@ -8,21 +8,7 @@ based on user symptoms.
 > learning purposes only. Its predictions are not a medical diagnosis.
 
 ------------------------------------------------------------------------
-## Screenshots
 
-## LoginPage
-
-![image alt](https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/e04b03ceb72b56031338259c6416b9cc6cb270cd/Screenshot%202026-08-19%20161215.png)
-
-## InterFace
-
-![image alt](https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/4f0794341cdb806bf8c8adab31426ba96103489e/Screenshot%202026-08-19%20161248.png)
-
-## Output
-
-![image alt](https://github.com/Abeesh-2027/heart-disease-prediction-system/blob/853a28ba515eb93ac6863bfd53060ddb768d9c18/Screenshot%202026-08-19%20161323.png)
-
----
 
 ## 🚀 Project Overview
 
