@@ -13,9 +13,9 @@
   --warn: #f5b942;
   --focus: #6ea8ff;
   --radius: 14px;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "Inter", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -40,11 +40,9 @@ body {
   inset: 0;
   z-index: 0;
   background-image:
-    radial-gradient(circle at 20% 15%, #ff5c6c14 0%, transparent 45%),
-    radial-gradient(circle at 85% 80%, #2dd9b512 0%, transparent 45%),
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: auto, auto, 42px 42px, 42px 42px;
+  background-size: 42px 42px, 42px 42px;
   opacity: 0.55;
   pointer-events: none;
 }
@@ -79,7 +77,7 @@ button:focus-visible,
 .login-card {
   width: 100%;
   max-width: 420px;
-  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 28px 28px 24px;
@@ -348,7 +346,7 @@ button:focus-visible,
 }
 .symptom-card:has(input:checked) {
   border-color: var(--accent);
-  background: linear-gradient(180deg, #ff5c6c14, var(--surface));
+  background: #1c1b2a;
 }
 
 .btn-predict { margin-top: 8px; }
