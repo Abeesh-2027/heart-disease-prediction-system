@@ -1,4 +1,4 @@
-# ❤️ Cardia --- Heart Disease Screening System
+#  Cardia --- Heart Disease Screening System
 
 Cardia is a full-stack heart disease screening application that uses a
 machine learning model to predict possible heart-related conditions
@@ -10,7 +10,7 @@ based on user symptoms.
 ------------------------------------------------------------------------
 
 
-## 🚀 Project Overview
+##  Project Overview
 
 Cardia is divided into two main parts:
 
@@ -54,7 +54,7 @@ Cardia is divided into two main parts:
 
 ------------------------------------------------------------------------
 
-## 📁 Project Structure
+##  Project Structure
 
 ``` text
 heart-disease-prediction-system/
@@ -79,7 +79,7 @@ heart-disease-prediction-system/
 
 ------------------------------------------------------------------------
 
-## 🧩 Technologies Used
+##  Technologies Used
 
 ### Frontend
 
@@ -110,7 +110,7 @@ heart-disease-prediction-system/
 
 ------------------------------------------------------------------------
 
-## 🖥️ Frontend
+##  Frontend
 
 The frontend is the part of the application that users interact with.
 
@@ -155,7 +155,7 @@ backend/main.py
 
 ------------------------------------------------------------------------
 
-## 🤖 Machine Learning Model
+## Machine Learning Model
 
 The application uses a trained **Random Forest** machine learning model.
 
@@ -202,7 +202,7 @@ prediction.
 
 ------------------------------------------------------------------------
 
-## 🔐 Login System
+## Login System
 
 The original project used a hardcoded login:
 
@@ -252,7 +252,7 @@ Example response:
 
 ------------------------------------------------------------------------
 
-# 🔌 API Endpoints
+# API Endpoints
 
 ## `GET /`
 
@@ -319,7 +319,7 @@ Runs the machine learning prediction.
 
 ------------------------------------------------------------------------
 
-# 🔄 How the Application Works
+#  How the Application Works
 
 ``` text
 1. User opens the website
@@ -347,7 +347,7 @@ Runs the machine learning prediction.
 
 ------------------------------------------------------------------------
 
-# 🌐 Deployment
+# Deployment
 
 The application uses two hosting platforms:
 
@@ -364,7 +364,7 @@ FastAPI        HTML/CSS/JS
 
 ------------------------------------------------------------------------
 
-## ☁️ Deploy Backend to Render
+## Deploy Backend to Render
 
 ### 1. Push the Project to GitHub
 
@@ -419,7 +419,7 @@ This helps avoid compatibility issues with packages such as
 
 ------------------------------------------------------------------------
 
-## 🔗 Connect the Frontend to the Backend
+## Connect the Frontend to the Backend
 
 After deploying the backend, Render will provide a URL similar to:
 
@@ -451,7 +451,7 @@ Replace the URL with your actual Render URL.
 
 ------------------------------------------------------------------------
 
-## ▲ Deploy Frontend to Vercel
+## Deploy Frontend to Vercel
 
 Go to Vercel:
 
@@ -485,7 +485,7 @@ https://your-frontend.vercel.app
 
 ------------------------------------------------------------------------
 
-# 🔐 CORS Configuration
+# CORS Configuration
 
 CORS allows the Vercel frontend to communicate with the Render backend.
 
@@ -503,7 +503,7 @@ ALLOWED_ORIGINS=https://your-frontend.vercel.app
 
 ------------------------------------------------------------------------
 
-# 🧪 Run Locally
+# Run Locally
 
 ## Backend
 
@@ -546,7 +546,7 @@ http://127.0.0.1:8000
 
 ------------------------------------------------------------------------
 
-# 📚 Important Files to Study
+# Important Files to Study
 
 If you are learning this project, focus on these files first:
 
@@ -612,7 +612,7 @@ Converts model output into readable labels.
 
 ------------------------------------------------------------------------
 
-# 🎯 Project Features
+# Project Features
 
 -   Full-stack architecture
 -   FastAPI REST API
@@ -629,7 +629,7 @@ Converts model output into readable labels.
 
 ------------------------------------------------------------------------
 
-# 🧠 Quick Study Summary
+# Quick Study Summary
 
 ``` text
 Cardia
@@ -678,7 +678,7 @@ User
 
 ------------------------------------------------------------------------
 
-# 🩺 Disclaimer
+# Disclaimer
 
 This project is intended for **educational and demonstration purposes
 only**.
@@ -691,7 +691,7 @@ medical evaluation.
 
 ------------------------------------------------------------------------
 
-## 👨‍💻 Author
+## Author
 
 **Abeesh-2027**
 
