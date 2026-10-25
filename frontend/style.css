@@ -24,7 +24,6 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -62,7 +61,6 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
-/* ================= LOGIN SCREEN ================= */
 
 .login-screen {
   position: relative;
@@ -225,7 +223,6 @@ button:focus-visible,
 .api-status.online .dot { background: var(--good); box-shadow: 0 0 8px var(--good); }
 .api-status.offline .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
 
-/* ================= APP SCREEN ================= */
 
 .app-screen {
   position: relative;
@@ -412,7 +409,6 @@ button:focus-visible,
   text-align: center;
 }
 
-/* ================= RESPONSIVE ================= */
 
 @media (max-width: 860px) {
   .workspace { grid-template-columns: 1fr; }

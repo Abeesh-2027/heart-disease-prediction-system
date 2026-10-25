@@ -12,8 +12,6 @@ le = pickle.load(open(os.path.join(BASE_DIR, "model", "label_encoder.pkl"), "rb"
 
 app = FastAPI(title="Heart Disease Prediction API")
 
-# Allow the Vercel frontend (and local dev) to call this API.
-# You can restrict this to your exact Vercel domain after deploying.
 ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "*")
 origins = ["*"] if ALLOWED_ORIGINS == "*" else [o.strip() for o in ALLOWED_ORIGINS.split(",")]
 
@@ -46,7 +44,6 @@ def health():
 
 @app.post("/api/login")
 def login(payload: LoginRequest):
-    # Demo auth: any non-empty username + password is accepted.
     username = payload.username.strip()
     password = payload.password.strip()
     if not username or not password:
