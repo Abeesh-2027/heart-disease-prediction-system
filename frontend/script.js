@@ -5,7 +5,6 @@
   const loginBtn = document.getElementById("loginBtn");
   const loginError = document.getElementById("loginError");
   const apiStatus = document.getElementById("apiStatus");
-  const apiStatusText = apiStatus.querySelector(".api-status-text");
   const whoami = document.getElementById("whoami");
   const logoutBtn = document.getElementById("logoutBtn");
 
@@ -19,29 +18,24 @@
 
   const GOOD_TERMS = ["healthy", "normal", "low risk", "no disease"];
 
-  function setLoading(btn, isLoading) {
-    btn.classList.toggle("loading", isLoading);
+  function setLoading(btn, isLoading, loadingText, normalText) {
     btn.disabled = isLoading;
+    btn.textContent = isLoading ? loadingText : normalText;
   }
 
   async function checkApiHealth() {
     try {
-      const res = await fetch(`${API_BASE_URL}/`, { method: "GET" });
-      if (res.ok) {
-        apiStatus.classList.add("online");
-        apiStatus.classList.remove("offline");
-        apiStatusText.textContent = "API online";
-      } else {
-        throw new Error("bad status");
-      }
+      const res = await fetch(API_BASE_URL + "/");
+      if (!res.ok) throw new Error("bad status");
+      apiStatus.className = "a12 a38";
+      apiStatus.textContent = "API online";
     } catch (err) {
-      apiStatus.classList.add("offline");
-      apiStatus.classList.remove("online");
-      apiStatusText.textContent = "API unreachable — check API_BASE_URL in config.js";
+      apiStatus.className = "a12 a39";
+      apiStatus.textContent = "API unreachable. Check API_BASE_URL in config.js";
     }
   }
 
-  loginForm.addEventListener("submit", async (e) => {
+  loginForm.addEventListener("submit", async function (e) {
     e.preventDefault();
     loginError.textContent = "";
 
@@ -53,16 +47,16 @@
       return;
     }
 
-    setLoading(loginBtn, true);
+    setLoading(loginBtn, true, "Signing in...", "Sign in");
     try {
-      const res = await fetch(`${API_BASE_URL}/api/login`, {
+      const res = await fetch(API_BASE_URL + "/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: username, password: password })
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+        const data = await res.json().catch(function () { return {}; });
         throw new Error(data.detail || "Login failed");
       }
 
@@ -75,11 +69,11 @@
           ? "Can't reach the API. Check API_BASE_URL in config.js and that the backend is running."
           : err.message;
     } finally {
-      setLoading(loginBtn, false);
+      setLoading(loginBtn, false, "Signing in...", "Sign in");
     }
   });
 
-  logoutBtn.addEventListener("click", () => {
+  logoutBtn.addEventListener("click", function () {
     sessionStorage.removeItem("cardia_user");
     appScreen.classList.add("hidden");
     loginScreen.classList.remove("hidden");
@@ -93,7 +87,7 @@
     appScreen.classList.remove("hidden");
   }
 
-  predictForm.addEventListener("submit", async (e) => {
+  predictForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formData = new FormData(predictForm);
@@ -102,19 +96,19 @@
       breath: formData.has("breath") ? 1 : 0,
       fatigue: formData.has("fatigue") ? 1 : 0,
       heartbeat: formData.has("heartbeat") ? 1 : 0,
-      dizziness: formData.has("dizziness") ? 1 : 0,
+      dizziness: formData.has("dizziness") ? 1 : 0
     };
 
-    setLoading(predictBtn, true);
+    setLoading(predictBtn, true, "Checking...", "Run Screening");
     try {
-      const res = await fetch(`${API_BASE_URL}/api/predict`, {
+      const res = await fetch(API_BASE_URL + "/api/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+        const data = await res.json().catch(function () { return {}; });
         throw new Error(data.detail || "Prediction failed");
       }
 
@@ -123,7 +117,7 @@
     } catch (err) {
       showResult(null, err.message);
     } finally {
-      setLoading(predictBtn, false);
+      setLoading(predictBtn, false, "Checking...", "Run Screening");
     }
   });
 
@@ -133,16 +127,17 @@
 
     if (errorMessage) {
       resultLabel.textContent = "Error";
-      resultLabel.className = "status-bad";
+      resultLabel.className = "a34 a39";
       resultNote.textContent = errorMessage;
       return;
     }
 
-    const isGood = GOOD_TERMS.some((t) =>
-      prediction.toLowerCase().includes(t)
-    );
+    const isGood = GOOD_TERMS.some(function (term) {
+      return prediction.toLowerCase().includes(term);
+    });
+
     resultLabel.textContent = prediction;
-    resultLabel.className = isGood ? "status-good" : "status-bad";
+    resultLabel.className = isGood ? "a34 a38" : "a34 a39";
     resultNote.textContent = isGood
       ? "No significant risk indicators from the selected symptoms."
       : "Model flagged possible risk based on the selected symptoms. This is a demo, not a diagnosis.";
@@ -156,7 +151,6 @@
 
   resetBtn.addEventListener("click", resetResult);
 
-  // Resume session if already "logged in" this tab.
   const existingUser = sessionStorage.getItem("cardia_user");
   if (existingUser) showApp(existingUser);
 
